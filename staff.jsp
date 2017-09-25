@@ -2,7 +2,22 @@
 <jsp:useBean id="obj" class= "db_homeo.db_connection"> </jsp:useBean>
 
 <html>
-    <head>  </head>
+    <head>
+        <<script src="jquery/jquery.min.js"></script>
+        <script>
+            function sel(x)
+            {
+                if(x=="7"){
+                $("#cons").css("visibility","visible");}
+            else
+            {
+                  $("#cons").css("visibility","hidden")
+            }
+            }
+            </script>
+            
+              
+    </head>
     <body>
     <%
         String name="",adrs="",mob="",mail="",gender="",confee="",dob="",doj="",mstatus="",salary="",exp="",desid="",staffid="",staffuser="",staffpwd="";
@@ -31,14 +46,6 @@
                Editid=request.getParameter("eid");
             }
         }
-           
-        
-        
-        
-        
-        
-        
-        
          if(request.getParameter("did")!=null)
             {
                  String del="delete from tbl_staff where staff_id='"+ request.getParameter("did")  +"'";
@@ -71,17 +78,25 @@
               
               
             if(request.getParameter("hid")!=""){
-                 String up="update tbl_staff set staff_name='"+Staffname+"',staff_gender='"+ Staffgender+"',staff_email='"+Staffmail+"',staff_mob='"+Staffmob+"',staff_confee='"+ Stafffee+"',staff_dob='"+Staffdob+"',staff_mstatus='"+Staffmstatus+"',staff_adrs='"+Staffadrs+"',staff_salary='"+Staffsalary+"',staff_doj='"+Staffdoj+"',staff_exp='"+ Staffexp+"',des_id='"+Staffdes+"',staff_user='"+Staffuser+"',staff_pswd='"+Staffpwd+"' where sup_id='"+request.getParameter("hid")+"'";
+                 String up="update tbl_staff set staff_name='"+Staffname+"',staff_gender='"+ Staffgender+"',"
+                         + "staff_email='"+Staffmail+"',staff_mob="+Staffmob+","
+                         + "staff_confee="+ Stafffee+",staff_dob='"+Staffdob+"',"
+                         + "staff_marsts='"+Staffmstatus+"',staff_adrs='"+Staffadrs+"',"
+                         + "staff_salary="+Staffsalary+",staff_doj='"+Staffdoj+"',"
+                         + "staff_exp="+ Staffexp+",des_id='"+Staffdes+"',staff_user='"+Staffuser+"',"
+                         + "staff_pswd='"+Staffpwd+"' where staff_id='"+request.getParameter("hid")+"'";
                      boolean b= obj.insert(up);
+                    
                         if(b==true)
                             {
                             response.sendRedirect("staff.jsp");
                             }else{
                             out.println(up);
                             }
-                            }else{
+                                 }else{
                             String ins="insert into tbl_staff(staff_name,staff_gender,staff_email,staff_mob,staff_confee,staff_dob,staff_marsts,staff_adrs,staff_salary,staff_doj,staff_exp,des_id,staff_user,staff_pswd)values('"+Staffname+"','"+Staffgender+"','"+Staffmail+"','"+Staffmob+"','"+Stafffee+"','"+Staffdoj+"','"+Staffmstatus+"','"+Staffadrs+"','"+Staffsalary+"','"+Staffdoj+"','"+Staffexp+"','"+Staffdes+"','"+Staffuser+"','"+Staffpwd+"')";
                             boolean b= obj.insert(ins);
+                            out.print(ins);
                     if(b)
                          {
                 
@@ -105,14 +120,14 @@
        <td>Name</td><td><input type="text" value="<%=name%>" id="txt_name" name="txt_name" ></td>
    </tr>
     <tr>
-            <td>Address</td><td><textarea id="txt_address" name="txt_address"></textarea></td>
+            <td>Address</td><td><textarea id="txt_address" name="txt_address" ><%=adrs%></textarea></td>
     </tr>
 <tr>
-            <td>Gender</td><td><input type="radio" name="gen" value="Male" id="r1">Male</td>
-            <td><input type="radio" id="r1" name="gen" value="Female">Female</td>
+    <td>Gender</td><td><input type="radio" name="gen" <% if(gender.equals("Male")){%> checked=""<% }%> value="Male" id="r1">Male</td>
+            <td><input type="radio" id="r1" name="gen" <% if(gender.equals("Female")){%> checked=""<% }%> value="Female">Female</td>
 </tr>
 <tr>
-            <td>Designation</td><td><select id="ddl_desig" name="ddl_desig">
+    <td>Designation</td><td><select id="ddl_desig" onchange="sel(this.value)" name="ddl_desig">
                     <option>-----select-------</option>
                    <%
                         
@@ -136,7 +151,7 @@
 	<td>Mobile</td><td><input type="text" id="txt_mob" value="<%=mob%>" name="txt_mob" ></td>
       	</tr>
         <tr>
-	<td>Consultation Fee</td><td><input type="text" id="txt_fee" value="<%=confee%>" name="txt_fee" ></td>
+            <td><div id="cons" style="visibility: hidden">Consultation Fee<input type="text" id="txt_fee" value="<%=confee%>" name="txt_fee" ></div></td>
       	</tr>
         <tr>
             <td>Date of Birth</td><td><input type="date" id="dob" value="<%=dob%>" name="dob" ></td>
@@ -145,8 +160,8 @@
             <td>Date of Join</td><td><input type="date" id="doj" value="<%=doj%>" name="doj" ></td>
       	</tr>
         <tr>
-            <td>Marital Status</td><td><input type="radio" name="mstatus" value="Yes" id="r2" >Married</td>
-            <td><input type="radio" id="r2" name="mstatus" value="No">Unmarried</td>
+            <td>Marital Status</td><td><input type="radio" name="mstatus" <% if(mstatus.equals("Yes")){%> checked=""<% }%> value="Yes" id="r2" >Married</td>
+            <td><input type="radio" id="r2" name="mstatus" <% if(mstatus.equals("No")){%> checked=""<% }%>value="No">Unmarried</td>
 	</tr>
         <tr>
 	<td>Salary</td><td><input type="text" id="txt_salary"  value="<%=salary%>"name="txt_salary" ></td>
@@ -168,11 +183,11 @@
             <table border=".1">
                 <tr><th>Staff Details</th></tr><tr><td>Name</td><td>Address</td><td>Mail Id</td><td>Mobile</td><td>Gender</td><td>Consultation Fee</td><td>Date Of Join</td><td>Marital Status</td><td>Salary</td><td>Date Of Birth</td><td>Experience</td><td>Designation</td><td>Username</td><td>Password</td><td>Edit</td><td> Delete</tr>
                 <%
-                    String sel1="select * from tbl_staff";
+                    String sel1="select * from tbl_staff s,tbl_designation d where s.des_id=d.des_id";
                     ResultSet rs1=obj.select(sel1);
                     while(rs1.next())
                     { %>
-                    <tr><td><%=rs1.getString("staff_name")%></td> <td><%=rs1.getString("staff_adrs")%> <td><%=rs1.getString("staff_email")%><td><%=rs1.getString("staff_mob")%></td><td><%=rs1.getString("staff_gender")%></td> <td><%=rs1.getString("staff_confee")%></td><td><%=rs1.getString("staff_doj")%></td><td><%=rs1.getString("staff_marsts")%></td> <td><%=rs1.getString("staff_salary")%></td> <td><%=rs1.getString("staff_dob")%></td> <td><%=rs1.getString("staff_exp")%></td> <td><%=rs1.getString("des_id")%></td> <td><%=rs1.getString("staff_user")%></td><td><%=rs1.getString("staff_pswd")%></td><td><a href="staff.jsp?eid=<%=rs1.getString("staff_id")%>">Edit</a> <td><a href="staff.jsp?did=<%=rs1.getString("staff_id")%>">Delete</a></td>
+                    <tr><td><%=rs1.getString("staff_name")%></td> <td><%=rs1.getString("staff_adrs")%> <td><%=rs1.getString("staff_email")%><td><%=rs1.getString("staff_mob")%></td><td><%=rs1.getString("staff_gender")%></td> <td><%=rs1.getString("staff_confee")%></td><td><%=rs1.getString("staff_doj")%></td><td><%=rs1.getString("staff_marsts")%></td> <td><%=rs1.getString("staff_salary")%></td> <td><%=rs1.getString("staff_dob")%></td> <td><%=rs1.getString("staff_exp")%></td> <td><%=rs1.getString("des_name")%></td> <td><%=rs1.getString("staff_user")%></td><td><%=rs1.getString("staff_pswd")%></td><td><a href="staff.jsp?eid=<%=rs1.getString("staff_id")%>">Edit</a> <td><a href="staff.jsp?did=<%=rs1.getString("staff_id")%>">Delete</a></td>
                                      <%     
                               }
 
