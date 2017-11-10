@@ -1,5 +1,4 @@
-<%@page import="java.sql.ResultSet"%>
-<jsp:useBean id="obj" class= "db_homeo.db_connection"> </jsp:useBean>
+<%@include file="Header.jsp" %>
 
 <html>
     <head>  </head>
@@ -22,9 +21,7 @@
                Editid=request.getParameter("eid");
             }
         }
-           
-        
-        
+       
          if(request.getParameter("did")!=null)
         {
             String del="delete from tbl_supplier where sup_id='"+ request.getParameter("did")  +"'";

@@ -1,9 +1,8 @@
-<%@page import="java.sql.ResultSet"%>
-<jsp:useBean id="obj" class= "db_homeo.db_connection"> </jsp:useBean>
+<%@include file="Header.jsp" %>
 
 <html>
     <head>
-        <<script src="jquery/jquery.min.js"></script>
+        <script src="jquery/jquery.min.js"></script>
         <script>
             function sel(x)
             {
@@ -14,7 +13,79 @@
                   $("#cons").css("visibility","hidden")
             }
             }
-            </script>
+                       
+          function validate()
+          {
+              
+          var status="true";                
+               var sfname=/^[A-Za-z]{3,10}$/;
+               var fname=document.getElementById('txt_name').value;
+               
+               if((fname.match(sfname)))                {
+                    document.getElementById('valsname').innerHTML="";
+                }else
+                {
+                   document.getElementById('valsname').innerHTML="Name must be filled!!!!";         
+                   status="false";
+                }
+                var regaddress=/^[A-Za-z ]{3,150}$/;
+                var address=document.getElementById('staff_adrs').value;                
+                if((address.match(regaddress)))
+                {
+                    document.getElementById('valaddress').innerHTML="";
+               }else
+                {
+                    document.getElementById('valaddress').innerHTML="Enter Address";
+                    status="false";
+                }
+             var regph=/^[0-9 ]{0,9}$/;
+               var ph=document.getElementById('staff_mob').value;
+                
+             if((ph.match(regph)))
+                {
+                    document.getElementById('valph').innerHTML="";
+               }else
+                {
+                    document.getElementById('valph').innerHTML="Enter Phone Number";
+                    status="false";
+                }
+               
+                                
+                 var reuname=/^[0-9 ]{0,9}$/;
+                var uname=document.getElementById('staff_user').value;
+                
+                if((uname.match(reuname)))
+              {
+                    document.getElementById('valuname').innerHTML="";
+                }else
+                {
+                    document.getElementById('valuname').innerHTML="Enter User Name";
+                    status="false";
+                }
+                
+                 var regpwd=/^[0-9 ]{0,9}$/;
+                var pwd=document.getElementById('staff_pswd').value;
+                
+                if((pwd.match(regpwd)))
+                {
+                    document.getElementById('valpwd').innerHTML="";
+                }else
+                {
+                    document.getElementById('valpwd').innerHTML="Enter Password";
+                    status="false";
+               }
+     if(status=="true")
+            {
+                return true;
+            }else
+            {
+                return false;
+          }
+         
+    }
+    
+    </script>
+           
             
               
     </head>
@@ -112,15 +183,15 @@
         }
         %>
         
-    <center><form name="frm1" method="">
+    <center><form>
             <input type="hidden" name="hid" value="<%=Editid%>">
             <table width="">
 
    <tr>
-       <td>Name</td><td><input type="text" value="<%=name%>" id="txt_name" name="txt_name" ></td>
+       <td>Name</td><td><input type="text" value="<%=name%>" id="txt_name" name="txt_name" > <div style="color: red" id="valsname" ></div></td></td>
    </tr>
     <tr>
-            <td>Address</td><td><textarea id="txt_address" name="txt_address" ><%=adrs%></textarea></td>
+            <td>Address</td><td><textarea id="txt_address" name="txt_address" ><%=adrs%></textarea><td><div style="color: red" id="valaddress" ></div></td></td>
     </tr>
 <tr>
     <td>Gender</td><td><input type="radio" name="gen" <% if(gender.equals("Male")){%> checked=""<% }%> value="Male" id="r1">Male</td>
@@ -148,7 +219,7 @@
         
 </tr>
          <tr>
-	<td>Mobile</td><td><input type="text" id="txt_mob" value="<%=mob%>" name="txt_mob" ></td>
+	<td>Mobile</td><td><input type="text" id="txt_mob" value="<%=mob%>" name="txt_mob" ><td><div style="color: red" id="valph" ></div></td>
       	</tr>
         <tr>
             <td><div id="cons" style="visibility: hidden">Consultation Fee<input type="text" id="txt_fee" value="<%=confee%>" name="txt_fee" ></div></td>
@@ -170,15 +241,15 @@
 	<td>Experience</td><td><input type="text" id="txt_exp" value="<%=exp%>" name="txt_exp" ></td>
               	</tr>
          <tr>
-	<td>Username</td><td><input type="text" id="txt_user" value="<%=staffuser%>" name="txt_user" ></td>
+	<td>Username</td><td><input type="text" id="txt_user" value="<%=staffuser%>" name="txt_user" ><td><div style="color: red" id="valemail" ></div></td></td>
       	</tr>
          <tr>
-	<td>Password</td><td><input type="password" id="txt_pwd" value="<%=staffpwd%>" name="txt_pwd" ></td>
+	<td>Password</td><td><input type="password" id="txt_pwd" value="<%=staffpwd%>" name="txt_pwd" ><td><div style="color: red" id="valpwd" ></div></td></td>
       	</tr>
         
                 <tr>
-	<td><input type="submit" id="btn_submit" name="btn_submit" value="Ok"></td>
-	<td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"</td>
+	<td><input type="submit" id="btn_submit" name="btn_submit" value="Ok" onclick="return validate()"></td>
+        <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"></td>
 	</tr>
             <table border=".1">
                 <tr><th>Staff Details</th></tr><tr><td>Name</td><td>Address</td><td>Mail Id</td><td>Mobile</td><td>Gender</td><td>Consultation Fee</td><td>Date Of Join</td><td>Marital Status</td><td>Salary</td><td>Date Of Birth</td><td>Experience</td><td>Designation</td><td>Username</td><td>Password</td><td>Edit</td><td> Delete</tr>

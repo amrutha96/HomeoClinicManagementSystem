@@ -1,5 +1,4 @@
-<%@page import="java.sql.ResultSet"%>
-<jsp:useBean id="obj" class= "db_homeo.db_connection"> </jsp:useBean>
+<%@include file="Header.jsp" %>
 
 <html>
     <head>  </head>
@@ -65,7 +64,7 @@
         }
         %>
         
-    <center><form name="frm1" method="">
+    <center><form>
             <input type="hidden" name="hid" value="<%=Editid%>">
 <table width="">
 
@@ -75,17 +74,17 @@
 	</tr>
 	<tr>
 	<td><input type="submit" id="btn_submit" name="btn_submit" value="Ok"></td>
-	<td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"</td>
+        <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"></td>
 	</tr>
 	</table>
             <table border=".1">
-                <tr><td><th>Designation</th></td></tr>
+                <tr><th>Designation</th></tr>
                 <%
                     String sel="select * from tbl_designation";
                     ResultSet rs=obj.select(sel);
                     while(rs.next())
                     { %>
-                    <tr><td><%= rs.getString("des_name")%></td><td><a href="Designation.jsp?eid=<%= rs.getString("des_id")%>">Edit</a> <td><a href="Designation.jsp?did=<%= rs.getString("des_id")%>">Delete</a></td></td></tr>
+                    <tr><td><%= rs.getString("des_name")%></td><td><a href="Designation.jsp?eid=<%= rs.getString("des_id")%>">Edit</a> <td><a href="Designation.jsp?did=<%= rs.getString("des_id")%>">Delete</a></td></tr>
                     <%     
                               }
 

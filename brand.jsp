@@ -1,5 +1,4 @@
-<%@page import="java.sql.ResultSet"%>
-<jsp:useBean id="obj" class= "db_homeo.db_connection"> </jsp:useBean>
+<%@include file="Header.jsp" %>
 
 <html>
     <head>  </head>
@@ -37,7 +36,7 @@
         {
             String BrandName=request.getParameter("txt_brandname");
             if(request.getParameter("hid")!=""){
-                String up="update tbl_brand set brand_name='"+BrandName+"' where brand_id='"+request.getParameter("hid")+"'";
+            String up="update tbl_brand set brand_name='"+BrandName+"' where brand_id='"+request.getParameter("hid")+"'";
              boolean b= obj.insert(up);
              if(b==true)
              {
@@ -84,7 +83,8 @@
                     ResultSet rs=obj.select(sel);
                     while(rs.next())
                     { %>
-                    <tr><td><%= rs.getString("brand_name")%></td><td><a href="brand.jsp?eid=<%= rs.getString("brand_id")%>">Edit</a> <td><a href="brand.jsp?did=<%= rs.getString("brand_id")%>">Delete</a></td></td></tr>
+               <tr><td><%= rs.getString("brand_name")%></td><td><a href="brand.jsp?eid=<%= rs.getString("brand_id")%>">Edit</a> <td><a href="brand.jsp?did=<%= rs.getString("brand_id")%>">Delete</a></td></td></tr>
+                
                     <%     
                               }
 

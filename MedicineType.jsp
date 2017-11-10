@@ -1,8 +1,41 @@
-<%@page import="java.sql.ResultSet"%>
-<jsp:useBean id="obj" class= "db_homeo.db_connection"> </jsp:useBean>
+<%@include file="Header.jsp" %>
 
 <html>
-    <head>  </head>
+    <head>  
+     <script>
+          
+          function validate()
+          
+          { 
+         
+            var status="true";
+            
+               var regmedtype=/^[A-Za-z ]{3,10}$/;
+               var fmedtype=document.getElementById('txt_medicinetype').value;
+               
+               if((fmedtype.match(regmedtype)))
+               {
+                    document.getElementById('valmed').innerHTML="";
+                } 
+                 else
+               {
+                    document.getElementById('valmed').innerHTML="Enter the Medicine Type";
+                   status="false";
+               }
+               
+                   if(status=="true")
+                   {
+                       return true;
+                       
+                   }
+                 else
+                 {
+                     return false;
+                 }
+                }
+
+            </script>
+    </head>
     <body>
     <%
         
@@ -64,27 +97,30 @@
         }
         %>
         
-    <center><form name="frm1" method="">
+    <center><form>
             <input type="hidden" name="hid" value="<%=Editid%>">
 <table width="">
 
     <th><u><b>Medicine Types</b></u></th>
 	<tr>
             <td>Type</td><td><input type="text"  value="<%=medtype%>"   id="txt_medicinetype" name="txt_medicinetype" ></td>
+           
+                 <td><div id="valmed"></div></td>
+           
 	</tr>
 	<tr>
-	<td><input type="submit" id="btn_submit" name="btn_submit" value="Ok"></td>
-	<td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"</td>
+	<td><input type="submit" id="btn_submit" onclick="return validate()" name="btn_submit" value="Ok"></td>
+        <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"></td>
 	</tr>
 	</table>
             <table border=".1">
-                <tr><td><th>Edit Type????</th></td></tr>
+                <tr><th>Edit Type????</th></tr>
                 <%
                     String sel="select * from tbl_medicinetype";
                     ResultSet rs=obj.select(sel);
                     while(rs.next())
                     { %>
-                    <tr><td><%= rs.getString("medtype_type")%></td><td><a href="MedicineType.jsp?eid=<%= rs.getString("medtype_id")%>">Edit</a> <td><a href="MedicineType.jsp?did=<%= rs.getString("medtype_id")%>">Delete</a></td></td></tr>
+                    <tr><td><%= rs.getString("medtype_type")%></td><td><a href="MedicineType.jsp?eid=<%= rs.getString("medtype_id")%>">Edit</a> <td><a href="MedicineType.jsp?did=<%= rs.getString("medtype_id")%>">Delete</a></td></tr>
                     <%     
                               }
 
