@@ -1,9 +1,14 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@include file="Header.jsp" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
    
     <body>
         <%
+             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt = new Date();
+                        String dta = sdf.format(dt);
 
             String dayschedday = "",doctshedf="",doctshedt="", dayschedid = "";
             String Editid = "";
@@ -56,23 +61,23 @@
             }
         %>
 
-    <center><form name="frm1" method="">
+    <center><form>
             <input type="hidden" name="hid" value="<%=Editid%>">
             <table width="">
 
                 <th><u><b>DAY SCHEDULING</b></u></th>
                 <tr>
-                    <td>Day scheduled day</td><td><input type="date"  value="<%=dayschedday%>"   id="dayschedday" name="txt_dayschedule" ></td>
+                    <td>Day scheduled day</td><td><input type="date"  min="<%=dta%>" id="dayschedday" name="txt_dayschedule"><%=dayschedday%></td>
                 </tr>
                  <tr>
-                     <td>Doctor schedule from Time</td><td><input type="time"  value="<%=doctshedf%>"   id="doctshedf" name="txt_doctf" ></td>
+                     <td>Doctor schedule from Time</td><td><input type="time"  id="doctshedf" name="txt_doctf" ><%=doctshedf%></td>
                 </tr>
                   <tr>
-                      <td>Doctor schedule To Time</td><td><input type="time"  value="<%=doctshedt%>"   id="doctshedt" name="txt_doctt" ></td>
+                      <td>Doctor schedule To Time</td><td><input type="time"   id="doctshedt" name="txt_doctt" ><%=doctshedt%></td>
                 </tr>
                 <tr>
                     <td><input type="submit" id="btn_submit" name="btn_submit" value="Ok"></td>
-                    <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"</td>
+                    <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"></td>
                 </tr>
             </table>
             <table border=".1">

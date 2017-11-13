@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@include file="Header.jsp" %>
 <script src="jquery/jquery.min.js"></script>
 <html>
@@ -50,6 +52,12 @@
     </head>
         <body>
     <%
+         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt = new Date();
+                        String dta = sdf.format(dt);
+                        
+                        
+                        
     
     if(request.getParameter("btn_submit")!=null)
     {
@@ -89,7 +97,7 @@
                          }
 
             }           
-                   
+                   response.sendRedirect("Payment1.jsp");
                        }                 
                         if(res)
                         {  String del="delete from tbl_temp";
@@ -115,10 +123,9 @@
         <center><form>
 <!--            <input type="hidden" name="hid" value="<">-->
                     <table width="">
-                        <tr><th colspan="4"><h2 style="text-align: center">Order Medicine</h2></th></tr>
+                        <tr><th colspan="4"><h2 style="text-align: center">Purchase Medicine</h2></th></tr>
                     <tr>
-                    <td>Order No</td><td><input type="text" value="" id="txt_orderno" name="txt_orderno" ></td> 
-                    <td>Date</td><td><input type="date" value="" id="date" name="date" ></td>
+                    <td>Date</td><td><input type="date" min="<%=dta%>"  id="date" name="date"></td>
                     </tr>
                     <tr>
                     <td>Supplier</td><td><select id="ddl_sup" onchange="sel(this.value)" name="ddl_sup">
@@ -133,8 +140,7 @@
                         <%  
                           }
                     %>
-                    </td><td> for Date</td><td><input type="date" value="" id="fordate" name="fordate" ></td> 
-                    </tr>
+                          </tr>
                     </table>
                                 <table width="">
                                

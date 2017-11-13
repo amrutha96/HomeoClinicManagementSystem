@@ -70,7 +70,7 @@
 
     <th><u><b>Designation Details</b></u></th>
 	<tr>
-            <td>Designation</td><td><input type="text"  value="<%=desname%>"   id="txt_designation" name="txt_designation" ></td>
+            <td>Designation</td><td><input type="text"  value="<%=desname%>" required=""  id="txt_designation" name="txt_designation" ></td>
 	</tr>
 	<tr>
 	<td><input type="submit" id="btn_submit" name="btn_submit" value="Ok"></td>

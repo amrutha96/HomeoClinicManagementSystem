@@ -7,9 +7,6 @@
 <title>Wecare</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
 <script src="http://platform.twitter.com/widgets.js"></script>
 <script src="assets/js/jquery.js"></script>
 <script src="assets/js/google-code-prettify/prettify.js"></script>
@@ -88,31 +85,33 @@ $(document).ready(function () {
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 </head>
-<body data-spy="scroll"  data-target=".bs-docs-sidebar" style="background-image: url('assets/img/home-banner-bg.jpg') ">
+<body data-spy="scroll"  data-target=".bs-docs-sidebar">
 <div class="jumbotron masthead" style="min-height: 600px">
-  <div class="splash"> <img src="assets/img/home-banner-bg" alt=""> </div>
-  
-  <div class="nav-agency">
+  <div class="splash"> <img src="assets/img/home-banner-bg.jpg" alt=""> </div>
+    <div class="nav-agency">
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
-        <div class="container"> <a class="brand" href="index.html"> <img src="assets/img/images.jpg" height="200"></a>
+          <div class="container"> <a class="brand" href="index.html"> <img src="assets/img/images.jpg" alt="" width="100"></a>
           <div id="main-nav">
             <div class="nav-collapse collapse">
               <ul class="nav">
                   <li class="active"><a href="../GUEST/Login.jsp">Home</a> </li>
-                               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Booking <b class="caret"></b></a>
+                                                
+               
+                  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Feedback <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                     <li><a href="RegisterBooking.jsp"> Book</a><br></li>
-                                          </ul>
-                                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> New Patient <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                     <li><a href="NewPatient.jsp"> New patient</a><br></li>
-                                          </ul>
+                      <li><a href="../GUEST/feedback.jsp">View Feedback</a></li>
+                                     </ul>
                 </li>
-              
-                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Schedule  <b class="caret"></b></a>
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Registration <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="Dayschedule.jsp">Schedule</a></li>
+                     <li><a href="brand.jsp"> Brand</a><br></li>
+                      <li><a href="MedicineType.jsp"> Medicine Type</a><br></li>
+                      </ul>
+                </li>
+                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Schedule My Day <b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="Doctorscheduling.jsp">Schedule</a></li>
                                      </ul>
                 </li>
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Feedback <b class="caret"></b></a>
@@ -120,6 +119,7 @@ $(document).ready(function () {
                       <li><a href="../GUEST/feedback.jsp">View Feedback</a></li>
                                      </ul>
                 </li>
+                
                 
               </ul>
             </div>

@@ -19,19 +19,17 @@
             String id=request.getParameter("opid");
             String insq="insert into tbl_prescriptionhead(doctor_Id,pat_opnumber,prescriptionHead_date) values('"+session.getAttribute("did")+"','"+id+"',CURDATE())";
             boolean b=obj.insert(insq);
-            String prescriptionHead_id=""; 
+            int prescriptionHead_id=0; 
             String selq="select MAX(prescriptionHead_id) as prescriptionHead_id from tbl_prescriptionhead where doctor_Id='"+session.getAttribute("did")+"' and prescriptionHead_date=CURDATE()";
             ResultSet rsq=obj.select(selq);
             if(rsq.next())
             {
-                prescriptionHead_id=rsq.getString("prescriptionHead_id");
+                prescriptionHead_id=rsq.getInt("prescriptionHead_id");
             }
             
             
             
-            String del="delete from tbl_temppresciption where doctor_id='"+session.getAttribute("did")+"'";
-            obj.insert(del);
-            
+           
             
             
             
@@ -40,12 +38,14 @@
             ResultSet rs=obj.select(sel);
             while(rs.next())
             {
-                String insdet="insert into tbl_prescriptiondetails (prescriptionDetails_desc,prescriptionDetails_otherdata,prescriptionDetails_qrty,medicine_id) values('"+rs.getString("tempPresciption_pres")+"','"+rs.getString("tempPresciption_other")+"','"+rs.getString("tempPresciption_qty")+"','"+rs.getString("medicine_id")+"')";
+                String insdet="insert into tbl_prescriptiondetails (prescriptionDetails_desc,prescriptionDetails_otherdata,prescriptionDetails_qrty,medicine_id,prescriptionHead_id) values('"+rs.getString("tempPresciption_pres")+"','"+rs.getString("tempPresciption_other")+"','"+rs.getString("tempPresciption_qty")+"','"+rs.getString("medicine_id")+"','"+prescriptionHead_id+"')";
            obj.insert(insdet);
             
             }
             
             
+             String del="delete from tbl_temppresciption where doctor_id='"+session.getAttribute("did")+"'";
+            obj.insert(del);
             
             
             

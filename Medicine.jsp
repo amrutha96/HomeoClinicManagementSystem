@@ -161,7 +161,7 @@
     <th><u><b>Medicine Details</b></u></th>
     
 	<tr>
-            <td>Medicine Name</td><td><input type="text"  value="<%=medname%>"   id="txt_medname" name="txt_medname" ></td>
+            <td>Medicine Name</td><td><input type="text"  value="<%=medname%>"   id="txt_medname" name="txt_medname" required="" ></td>
             <td><div style="color: red" id="valmed"></div></td>
 	</tr>
          <tr>
@@ -208,7 +208,7 @@
                             <td><div style="color: red" id="valsales"></div></td></td>
                          </tr>-->
 	<tr>
-	<td><input type="submit" id="btn_submit"  onclick="" name="btn_submit" value="Ok"></td>
+            <td><input type="submit" id="btn_submit"  onclick="return validate() " name="btn_submit" value="Ok"></td>
         <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"></td>
 	</tr>
 	</table>

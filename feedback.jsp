@@ -1,8 +1,14 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@include file="Header.jsp" %>
 <html>
     <head>  </head>
     <body>
     <%
+          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt = new Date();
+                        String dta = sdf.format(dt);
+                        
         
         String patname="",feedback="",fdate="",ftime="",feedbackid="";
         String Editid="";
@@ -83,15 +89,17 @@
             <td>Feedback</td><td><textarea  id="txt_feedback" name="txt_feedback"><%=feedback%></textarea></td>
 	</tr>
         <tr>
-            <td>Date</td><td><input type="date"  id="date" name="date">"<%=fdate%>"</td>
+            <td>Date</td><td><input type="date"  id="date" min="<%=dta%>" name="date"><%=fdate%></td>
 	</tr> <tr>
-            <td>Time</td><td><input type="time"  id="time" name="time">"<%=ftime%>" </td>
+            <td>Time</td><td><input type="time"  id="time" name="time"><%=ftime%> </td>
 	</tr>
 	<tr>
 	<td><input type="submit" id="btn_submit" name="btn_submit" value="Ok"></td>
         <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"></td>
 	</tr>
-	</table>
+</table><br>
+<br>
+<br>
             <table>
                 <tr><th>our Feedbacks!!!!!!!</th></tr><tr><td>Name</td><td>Feedback</td></tr>
                 <%

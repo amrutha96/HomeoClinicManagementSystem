@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@include file="Header.jsp" %>
 <html>
     <head>
@@ -61,8 +63,11 @@
      <body>
          
         <%
-        
-        String bktocken="",bkdate="",bkname="",bkgen="",bkaddrs="",bkage="",bookid="",docid="",currentdate="";
+              SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt = new Date();
+                        String dta = sdf.format(dt);
+                        
+                String bktocken="",bkdate="",bkname="",bkgen="",bkaddrs="",bkage="",bookid="",docid="",currentdate="";
         String Editid="";
         if(request.getParameter("eid")!=null)
         
@@ -157,10 +162,10 @@
             <td><div style="color: red" id="valtoc" ></div></td>
 	</tr>
         <tr>
-            <td>Current Date</td><td><input type="date"  value="<%=currentdate%>"   id="cdate" name="cdate" ></td>
+            <td>Current Date</td><td><input type="date"   min="<%=dta%>" id="cdate" name="cdate" ><%=currentdate%></td>
 	</tr>
         <tr>
-            <td>Date of Booking</td><td><input type="date"  value="<%=bkdate%>"   id="txt_bkdate" name="txt_bkdate" ></td>
+            <td>Date of Booking</td><td><input type="date"  min="<%=dta%>"   id="txt_bkdate" name="txt_bkdate" ><%=bkdate%></td>
 	</tr>
                
         <tr>     <td>Doctor Name</td><td><select id="ddl_staffid" name="ddl_staffid">

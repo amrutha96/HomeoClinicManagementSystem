@@ -63,17 +63,17 @@
         }
         %>
         
-    <center><form name="frm1" method="">
+    <center><form>
             <input type="hidden" name="hid" value="<%=Editid%>">
 <table width="">
 
     <th><u><b>Medicine Brands</b></u></th>
 	<tr>
-            <td>Type</td><td><input type="text"  value="<%=brandname%>"   id="txt_brandname" name="txt_brandname" ></td>
+            <td>Type</td><td><input type="text"  value="<%=brandname%>"   id="txt_brandname" required="" name="txt_brandname" ></td>
 	</tr>
 	<tr>
 	<td><input type="submit" id="btn_submit" name="btn_submit" value="Ok"></td>
-	<td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"</td>
+        <td><input type="reset" id="btn_reset" name="btn_reset" value="Cancel"></td>
 	</tr>
 	</table>
             <table border=".1">

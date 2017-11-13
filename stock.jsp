@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@include file="Header.jsp" %>
 
 <html>
@@ -5,7 +7,11 @@
     </head>
     <body>
     <%
-        
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        Date dt = new Date();
+                        String dta = sdf.format(dt);
+                        
+                        
         String medid="",mandate="",expdate="",qty="",medtypeid="";
         String Editid="";
         if(request.getParameter("eid")!=null)
@@ -71,7 +77,7 @@
         }
         }
         %>
-        <center><form name="frm1" method="">
+        <center><form>
             <input type="hidden" name="hid" value="<%=Editid%>">
 <table width="">
 
@@ -91,10 +97,10 @@
 %></tr>
                     
                      <tr>
-            <td>Man.Date</td><td><input type="date"   id="mandate" name="mandate" ><%=mandate%></td>
+                         <td>Man.Date</td><td><input type="date"   id="mandate" name="mandate" required=""><%=mandate%></td>
 	</tr>
         <tr>
-            <td>Exp.Date</td><td><input type="date"  id="expdate" name="expdate" ><%=expdate%></td>
+            <td>Exp.Date</td><td><input type="date"  id="expdate" name="expdate" min="<%=dta%>" required=""><%=expdate%></td>
 	</tr>
          
        <tr>
@@ -112,7 +118,7 @@
                         %>
                                </tr>
          <tr>
-            <td>Quantity</td><td><input type="text"  value="<%=qty%>"   id="txt_qty" name="txt_qty" ></td>
+             <td>Quantity</td><td><input type="text"  value="<%=qty%>"  required="" id="txt_qty" name="txt_qty" ></td>
 	</tr>                       
                              
 	<tr>

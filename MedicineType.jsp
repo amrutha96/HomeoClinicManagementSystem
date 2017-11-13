@@ -103,7 +103,7 @@
 
     <th><u><b>Medicine Types</b></u></th>
 	<tr>
-            <td>Type</td><td><input type="text"  value="<%=medtype%>"   id="txt_medicinetype" name="txt_medicinetype" ></td>
+            <td>Type</td><td><input type="text"  value="<%=medtype%>"  required="" id="txt_medicinetype" name="txt_medicinetype" ></td>
            
                  <td><div id="valmed"></div></td>
            

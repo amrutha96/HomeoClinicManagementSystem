@@ -1,7 +1,7 @@
 <%@include file="Header.jsp" %>
     <html>
         <head>
-            <script src="jquery/jquery.min.js"></script>
+           
             <script>
                 function sel(x)
                 {
@@ -101,7 +101,7 @@
 
                 <th><u><b>Doctor Scheduling</b></u></th>
 
-                <tr> <td> Day</td><td><select id="txt_dayshid" name="txt_dayshid">
+                <tr> <td> Day</td><td><select id="txt_dayshid" name="txt_dayshid" required="">
                             <option>------select-----</option>
                             <%
                                 String sel = "select * from tbl_dayschedule";
@@ -114,7 +114,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Doctor</td><td><select id="ddl_staffid" name="ddl_staffid">
+                    <td>Doctor</td><td><select id="ddl_staffid" name="ddl_staffid" required="">
                             <option>-----select------</option>
                             <%
                                 String sel1 = "select * from tbl_staff s,tbl_designation d where s.des_id=d.des_id and d.des_name='Doctor'";

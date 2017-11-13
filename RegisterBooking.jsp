@@ -17,7 +17,7 @@ String selq="select ifnull(MAX(pat_id),0) as opnumber from tbl_patient";
         <script>
              $("#patAvailable").css("visibility","hidden");
         function search(docId,date,txtopnumber){
-    alert(date)
+    //alert(date)
       $.ajax({url:"AjaxDoctorAvailbility.jsp?docId="+docId+"&date="+date+"&txtopnumber="+txtopnumber,success:function(result){
       $("#avilable").html(result);
       }});
@@ -28,7 +28,7 @@ String selq="select ifnull(MAX(pat_id),0) as opnumber from tbl_patient";
       $.ajax({url:"AjaxPatientSearch.jsp?patId="+patId,success:function(result){
               
               var res=result.trim();
-              alert(res)
+              //alert(res)
               if(res=="Patient Not Found!!!!")
               
               {
